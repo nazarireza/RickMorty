@@ -16,7 +16,8 @@ const appInitialState: AppState = {
 export const getConfigurations = createAsyncThunk(
   'getConfigurations',
   async () => {
-    const listMode = (await AsyncStorage.getItem('listMode')) as ListMode;
+    const listMode =
+      ((await AsyncStorage.getItem('listMode')) as ListMode) || 'Grid';
     return { listMode };
   }
 );
