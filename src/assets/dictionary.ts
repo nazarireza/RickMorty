@@ -1,6 +1,9 @@
 import i18n from 'i18n-js';
 
-const en = {};
+const en = {
+  'Rick and Morty': 'Rick and Morty',
+  'Bookmarked Items': 'Bookmarked Items',
+};
 
 i18n.translations = {
   en,
