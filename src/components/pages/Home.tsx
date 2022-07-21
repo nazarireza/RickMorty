@@ -123,8 +123,6 @@ export const HomePage: RootStackComponent<Routes.Home> = memo(
       [result.isFetching, result.error]
     );
 
-    console.log(result.error);
-
     return (
       <LoadingContainer style={styles.container} isBusy={result.isFetching}>
         <Space size="medium" />

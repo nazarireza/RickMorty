@@ -7,10 +7,12 @@ import { RootStack } from './src/routes/RootStack';
 
 // Set the locale once at the beginning of your app.
 import './src/assets/dictionary';
+import { getBookmarks } from './src/store/slices/bookmarkSlice';
 
 export default function App() {
   useEffect(() => {
     store.dispatch(getConfigurations());
+    store.dispatch(getBookmarks());
   }, []);
 
   return (
