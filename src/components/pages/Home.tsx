@@ -16,6 +16,7 @@ import { KeyValueData, SelectableList } from '../molecules/SelectableList';
 import { ItemList } from '../organisms/ItemList';
 
 const states: KeyValueData<CharacterStatus>[] = [
+  { id: '', value: 'All' },
   { id: 'Alive', value: 'Alive' },
   { id: 'Dead', value: 'Dead' },
   { id: 'unknown', value: 'Unknown' },
@@ -28,7 +29,7 @@ const listRenderModes: KeyValueData<ListMode>[] = [
 
 export const HomePage: RootStackComponent<Routes.Home> = memo(
   ({ navigation }) => {
-    const [status, setStatus] = useState<CharacterStatus>('Alive');
+    const [status, setStatus] = useState<CharacterStatus>('');
     const [page, setPage] = useState(1);
     const [pageCount, setPageCount] = useState(1);
     const [name, setName] = useState('');

@@ -14,9 +14,20 @@ export const api = createApi({
   }),
   endpoints: (build) => ({
     getCharacters: build.query<GetCharactersDto, GetCharactersModel>({
-      query: ({ name, page = 1, status = 'Alive' }) => ({
-        url: `/character?name=${name}&status=${status}&page=${page}`,
-      }),
+      query: (args) => {
+        const queries = Object.keys(args).reduce(
+          (prev, current) =>
+            args[current as keyof GetCharactersModel]
+              ? `${prev}&${current}=${
+                  args[current as keyof GetCharactersModel]
+                }`
+              : prev,
+          ''
+        );
+        return {
+          url: `/character?${queries}`,
+        };
+      },
     }),
 
     getSingleCharacter: build.query<Character, GetSingleCharacterModel>({

@@ -1,4 +1,4 @@
-export type CharacterStatus = 'Alive' | 'Dead' | 'unknown';
+export type CharacterStatus = '' | 'Alive' | 'Dead' | 'unknown';
 
 type CharacterGender = 'Female' | 'Male' | 'Genderless' | 'unknown';
 
