@@ -1,4 +1,4 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 import {
   StyleSheet,
   TouchableOpacity,
@@ -7,6 +7,7 @@ import {
 } from 'react-native';
 import { useTranslation } from '../../assets/dictionary';
 import { Character } from '../../services/types';
+import { useUrl } from '../../utilities/useUrl';
 import { Label } from '../atoms/Label';
 import { Space } from '../atoms/Space';
 
@@ -31,11 +32,7 @@ export const CharacterItem: React.FC<
     ...rest
   }) => {
     const { t } = useTranslation();
-
-    const normalizedFirstSeenEpisode = useMemo(
-      () => firstSeenEpisode.split('/').at(-1),
-      [firstSeenEpisode]
-    );
+    const { getLastRoute } = useUrl();
 
     return (
       <TouchableOpacity activeOpacity={0.7} {...rest}>
@@ -45,12 +42,17 @@ export const CharacterItem: React.FC<
           {name}
         </Label>
         <Space />
-        <KeyValueText title={t('Status')} value={status} />
-        <KeyValueText title={t('Species')} value={species} />
-        <KeyValueText title={t('Origin')} value={originName} />
+        <KeyValueText title={t('Status')} value={status} numberOfLines={1} />
+        <KeyValueText title={t('Species')} value={species} numberOfLines={1} />
+        <KeyValueText
+          title={t('Origin')}
+          value={originName}
+          numberOfLines={1}
+        />
         <KeyValueText
           title={t('First Seen Episode')}
-          value={normalizedFirstSeenEpisode}
+          value={getLastRoute(firstSeenEpisode)}
+          numberOfLines={1}
         />
       </TouchableOpacity>
     );
@@ -59,16 +61,19 @@ export const CharacterItem: React.FC<
 
 type KeyValueTextProps = {
   title: string;
-  value?: string;
+  value?: string | number;
+  numberOfLines?: number;
 };
 
-const KeyValueText = memo<KeyValueTextProps>(({ title, value }) => {
-  return (
-    <Label style={styles.subtitle} numberOfLines={1}>
-      {title}: <Label style={styles.subtitleValue}>{value}</Label>
-    </Label>
-  );
-});
+export const KeyValueText = memo<KeyValueTextProps>(
+  ({ title, value, numberOfLines }) => {
+    return (
+      <Label style={styles.subtitle} numberOfLines={numberOfLines}>
+        {title}: <Label style={styles.subtitleValue}>{value}</Label>
+      </Label>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   title: {

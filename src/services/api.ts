@@ -38,5 +38,5 @@ export const api = createApi({
   }),
 });
 
-export const { useLazyGetCharactersQuery, useLazyGetSingleCharacterQuery } =
+export const { useLazyGetCharactersQuery, useGetSingleCharacterQuery } =
   api;

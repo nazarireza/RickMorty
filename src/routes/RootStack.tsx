@@ -31,7 +31,13 @@ export function RootStack() {
           title: t('Bookmarked Items'),
         }}
       />
-      <RootStackNavigator.Screen name={Routes.Detail} component={DetailPage} />
+      <RootStackNavigator.Screen
+        name={Routes.Detail}
+        component={DetailPage}
+        options={{
+          title: '',
+        }}
+      />
     </RootStackNavigator.Navigator>
   );
 }

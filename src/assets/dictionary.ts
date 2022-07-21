@@ -12,6 +12,10 @@ const en = {
   Origin: 'Origin',
   'First Seen Episode': 'First Seen Episode',
   'Search and Filter': 'Search and Filter',
+  Gender: 'Gender',
+  'Last Known Location': 'Last Known Location',
+  'Number Of Episodes': 'Number Of Episodes',
+  'Last Seen Episode': 'Last Seen Episode',
 };
 
 i18n.translations = {
