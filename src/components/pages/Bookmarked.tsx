@@ -1,12 +1,17 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { useSelector } from 'react-redux';
 import { RootStackComponent, Routes } from '../../routes/types';
-import { View, Text, StyleSheet } from 'react-native';
+import { RootState } from '../../store';
+import { ItemList } from '../organisms/ItemList';
 
 export const BookmarkedPage: RootStackComponent<Routes.Bookmarked> = memo(
   ({ navigation }) => {
+    const { items } = useSelector((state: RootState) => state.bookmark);
+
     return (
       <View style={styles.container}>
-        <Text>Bookmarked Page</Text>
+        <ItemList items={items} />
       </View>
     );
   }
@@ -15,7 +20,5 @@ export const BookmarkedPage: RootStackComponent<Routes.Bookmarked> = memo(
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
   },
 });
